@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Name>Import_CAD</Name>
+		<FullClassName>Import_CAD.Import_CAD_Class</FullClassName>
+		<Text>RFA 2D CREATOR - Import View</Text>
+		<Description>Import a ACAD view</Description>
+		<VisibilityMode>AlwaysVisible</VisibilityMode>
+		<Assembly>C:\Revit Plugin\RFA 2D CREATOR - Import View\Import_CAD.dll</Assembly>
+		<AddInId>54a14364-8875-4570-a6cc-0c0fe274069e</AddInId>
+		<VendorId>ADSK</VendorId>
+		<VendorDescription>Autodesk, Inc, www.autodesk.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>
