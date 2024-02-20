@@ -194,6 +194,40 @@ namespace Add_Views_Inline
                         trans.AddNewlyCreatedDBObject(it, true);
                     }
 
+                    //Add 2 Points for capture the thumbnail
+                    double heightMiddle = brMiddle.Bounds.Value.MaxPoint.Y*2;
+                    double heightLeft = brLeft.Bounds.Value.MaxPoint.Y * 2;
+                    double heightRight = brRight.Bounds.Value.MaxPoint.Y * 2;
+                    double heightMax = heightMiddle + gap*2;
+                    if(heightLeft >= heightRight)
+                    {
+                        if (heightLeft >= heightMax) heightMax = heightLeft;
+                    }
+                    else
+                    {
+                        if (heightRight >= heightMax) heightMax = heightRight;
+                    }
+                    double widthMax = (brMiddle.Bounds.Value.MaxPoint.X - brMiddle.Bounds.Value.MinPoint.X)
+                                      + Math.Abs(brLeft.Bounds.Value.MaxPoint.X - brLeft.Bounds.Value.MinPoint.X)
+                                      + Math.Abs(brRight.Bounds.Value.MaxPoint.X - brRight.Bounds.Value.MinPoint.X)
+                                      + gap * 4;
+                    DBPoint Ponit1;
+                    DBPoint Ponit2;
+                    if (widthMax > heightMax)
+                    {
+                        Ponit1 = new DBPoint(new Point3d(-Math.Abs(brLeft.Bounds.Value.MinPoint.X) - gap, widthMax/2, 0));
+                        Ponit2 = new DBPoint(new Point3d(brRight.Bounds.Value.MaxPoint.X + gap, -widthMax/2, 0));
+                    }
+                    else
+                    {
+                        double newgap = (heightMax - widthMax) / 2;
+                        Ponit1 = new DBPoint(new Point3d(-Math.Abs(brLeft.Bounds.Value.MinPoint.X) - gap-newgap, heightMax / 2, 0));
+                        Ponit2 = new DBPoint(new Point3d(brRight.Bounds.Value.MaxPoint.X + gap+newgap, -heightMax / 2, 0));
+                    }
+                    ms.AppendEntity(Ponit1);
+                    trans.AddNewlyCreatedDBObject(Ponit1, true);
+                    ms.AppendEntity(Ponit2);
+                    trans.AddNewlyCreatedDBObject(Ponit2, true);
 
                     ms.UpgradeOpen();
 
